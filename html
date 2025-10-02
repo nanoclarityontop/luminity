@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminite - Code & Play</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.7)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 136, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Coding Section */
+        .code-editor {
+            background: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            overflow-x: auto;
+        }
+
+        .code-line {
+            margin: 0.5rem 0;
+            color: #d4d4d4;
+        }
+
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+
+        /* Credits */
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .credit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+        }
+
+        /* Game Modals */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .game-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-content {
+            background: rgba(15, 15, 35, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .game-area {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1rem 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">✨ Luminite</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('games')">Games</a></li>
+                <li><a href="#" onclick="showPage('coding')">Coding</a></li>
+                <li><a href="#" onclick="showPage('tutorials')">Tutorials</a></li>
+                <li><a href="#" onclick="showPage('credits')">Credits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to Luminite</h1>
+                <p>Where coding meets gaming in a luminous experience</p>
+                <a href="#" onclick="showPage('games')" class="cta-button">Start Playing</a>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Interactive Games</h3>
+                    <p>Play engaging games that teach programming concepts through fun challenges and puzzles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Code Learning</h3>
+                    <p>Master programming languages with interactive tutorials and real-time feedback.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Project Building</h3>
+                    <p>Create amazing projects and showcase your skills in our vibrant community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Games Page -->
+    <div id="games" class="page">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">🎮 Game Collection</h2>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="openGame('snake')">
+                    <div class="game-title">🐍 Snake Code</div>
+                    <p>Classic snake game with a coding twist. Collect functions to grow your snake!</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('memory')">
+                    <div class="game-title">🧠 Memory Match</div>
+                    <p>Match programming concepts and syntax in this brain-training memory game.</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('quiz')">
+                    <div class="game-title">❓ Code Quiz</div>
+                    <p>Test your programming knowledge with our interactive coding quiz challenges.</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('puzzle')">
+                    <div class="game-title">🧩 Logic Puzzle</div>
+                    <p>Solve algorithmic puzzles and improve your problem-solving skills.</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coding Page -->
+    <div id="coding" class="page">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">💻 Code Playground</h2>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🐍 Python Basics</h3>
+                    <p>Learn Python fundamentals with interactive examples and exercises.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌐 Web Development</h3>
+                    <p>Master HTML, CSS, and JavaScript to build amazing web applications.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚛️ React & Beyond</h3>
+                    <p>Dive into modern frameworks and build dynamic user interfaces.</p>
+                </div>
+            </div>
+
+            <div class="code-editor">
+                <div class="code-line"><span class="comment">// Welcome to Luminite Code Playground</span></div>
+                <div class="code-line"><span class="keyword">function</span> <span style="color: #dcdcaa;">welcomeToLuminite</span>() {</div>
+                <div class="code-line">&nbsp;&nbsp;<span class="keyword">const</span> <span style="color: #9cdcfe;">message</span> = <span class="string">"Start your coding journey!"</span>;</div>
+                <div class="code-line">&nbsp;&nbsp;<span style="color: #dcdcaa;">console.log</span>(<span style="color: #9cdcfe;">message</span>);</div>
+                <div class="code-line">&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Happy coding! 🚀"</span>;</div>
+                <div class="code-line">}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorials Page -->
+    <div id="tutorials" class="page">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">📚 Learning Path</h2>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Beginner Track</h3>
+                    <p>Start your programming journey with fundamental concepts and basic syntax.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Intermediate Challenges</h3>
+                    <p>Level up with data structures, algorithms, and real-world projects.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Advanced Mastery</h3>
+                    <p>Master complex topics like system design, optimization, and architecture.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <h3 style="color: #00ff88;">🌟 Featured Tutorial Series</h3>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Interactive coding tutorials that adapt to your learning pace</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credits Page -->
+    <div id="credits" class="page">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">👥 Credits & Team</h2>
+            
+            <div class="credits-grid">
+                <div class="credit-card">
+                    <div class="avatar">🚀</div>
+                    <h3>Alex Chen</h3>
+                    <p>Lead Developer</p>
+                    <p style="opacity: 0.8;">Full-stack wizard who brings ideas to life</p>
+                </div>
+                
+                <div class="credit-card">
+                    <div class="avatar">🎨</div>
+                    <h3>Maya Rodriguez</h3>
+                    <p>UI/UX Designer</p>
+                    <p style="opacity: 0.8;">Creates beautiful and intuitive user experiences</p>
+                </div>
+                
+                <div class="credit-card">
+                    <div class="avatar">🎮</div>
+                    <h3>Jordan Kim</h3>
+                    <p>Game Developer</p>
+                    <p style="opacity: 0.8;">Crafts engaging and educational gaming experiences</p>
+                </div>
+                
+                <div class="credit-card">
+                    <div class="avatar">📚</div>
+                    <h3>Sam Taylor</h3>
+                    <p>Content Creator</p>
+                    <p style="opacity: 0.8;">Develops comprehensive learning materials</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px;">
+                <h3 style="color: #00d4ff;">🙏 Special Thanks</h3>
+                <p>To our amazing community of learners and contributors who make Luminite possible!</p>
+                <p style="opacity: 0.7;">Built with ❤️ for the coding community</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Modals -->
+    <div id="snake-modal" class="game-modal">
+        <div class="game-content">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🐍 Snake Code</h3>
+            <div class="game-area">
+                <div style="text-align: center;">
+                    <p>🎮 Use arrow keys to move</p>
+                    <p>Score: <span id="snake-score">0</span></p>
+                    <button onclick="startSnake()" style="padding: 0.5rem 1rem; background: #00ff88; border: none; border-radius: 5px; color: white; cursor: pointer;">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memory-modal" class="game-modal">
+        <div class="game-content">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🧠 Memory Match</h3>
+            <div class="game-area">
+                <div style="text-align: center;">
+                    <p>Match the programming concepts!</p>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 300px; margin: 1rem auto;">
+                        <div class="memory-card" onclick="flipCard(this)" data-value="function">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="variable">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="function">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="loop">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="variable">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="array">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="loop">?</div>
+                        <div class="memory-card" onclick="flipCard(this)" data-value="array">?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="quiz-modal" class="game-modal">
+        <div class="game-content">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>❓ Code Quiz</h3>
+            <div class="game-area">
+                <div id="quiz-content">
+                    <p><strong>What does HTML stand for?</strong></p>
+                    <button onclick="checkAnswer(this, false)" style="display: block; margin: 0.5rem auto; padding: 0.5rem 1rem; background: #1a1a2e; border: 1px solid #00d4ff; color: white; border-radius: 5px; cursor: pointer;">Hypertext Markup Language</button>
+                    <button onclick="checkAnswer(this, true)" style="display: block; margin: 0.5rem auto; padding: 0.5rem 1rem; background: #1a1a2e; border: 1px solid #00d4ff; color: white; border-radius: 5px; cursor: pointer;">HyperText Markup Language</button>
+                    <button onclick="checkAnswer(this, false)" style="display: block; margin: 0.5rem auto; padding: 0.5rem 1rem; background: #1a1a2e; border: 1px solid #00d4ff; color: white; border-radius: 5px; cursor: pointer;">High Tech Modern Language</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="puzzle-modal" class="game-modal">
+        <div class="game-content">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🧩 Logic Puzzle</h3>
+            <div class="game-area">
+                <div style="text-align: center;">
+                    <p>Arrange the code blocks in the correct order:</p>
+                    <div id="puzzle-blocks" style="margin: 1rem 0;">
+                        <div class="puzzle-block" draggable="true" ondragstart="drag(event)" data-order="3">return result;</div>
+                        <div class="puzzle-block" draggable="true" ondragstart="drag(event)" data-order="1">function calculate() {</div>
+                        <div class="puzzle-block" draggable="true" ondragstart="drag(event)" data-order="4">}</div>
+                        <div class="puzzle-block" draggable="true" ondragstart="drag(event)" data-order="2">let result = x + y;</div>
+                    </div>
+                    <button onclick="checkPuzzle()" style="padding: 0.5rem 1rem; background: #00ff88; border: none; border-radius: 5px; color: white; cursor: pointer;">Check Solution</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .memory-card {
+            background: #1a1a2e;
+            border: 1px solid #00d4ff;
+            border-radius: 5px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .memory-card:hover {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+
+        .memory-card.flipped {
+            background: #00ff88;
+            color: #1a1a2e;
+        }
+
+        .puzzle-block {
+            background: #1a1a2e;
+            border: 1px solid #ff00ff;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            cursor: move;
+            display: inline-block;
+            font-family: monospace;
+        }
+
+        .puzzle-block:hover {
+            background: #ff00ff;
+            color: #1a1a2e;
+        }
+    </style>
+
+    <script>
+        // Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Game Functions
+        function openGame(gameType) {
+            document.getElementById(gameType + '-modal').classList.add('active');
+        }
+
+        function closeGame() {
+            document.querySelectorAll('.game-modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+
+        // Snake Game
+        function startSnake() {
+            let score = 0;
+            const scoreElement = document.getElementById('snake-score');
+            
+            const gameInterval = setInterval(() => {
+                score += 10;
+                scoreElement.textContent = score;
+                
+                if (score >= 100) {
+                    clearInterval(gameInterval);
+                    alert('🎉 Congratulations! You scored ' + score + ' points!');
+                }
+            }, 1000);
+        }
+
+        // Memory Game
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        function flipCard(card) {
+            if (card.classList.contains('flipped') || flippedCards.length >= 2) return;
+            
+            card.classList.add('flipped');
+            card.textContent = card.dataset.value;
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(() => {
+                    if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {
+                        matchedPairs++;
+                        if (matchedPairs === 4) {
+                            alert('🎉 Congratulations! You matched all pairs!');
+                        }
+                    } else {
+                        flippedCards.forEach(c => {
+                            c.classList.remove('flipped');
+                            c.textContent = '?';
+                        });
+                    }
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Quiz Game
+        function checkAnswer(button, isCorrect) {
+            if (isCorrect) {
+                button.style.background = '#00ff88';
+                alert('🎉 Correct! Great job!');
+            } else {
+                button.style.background = '#ff4444';
+                alert('❌ Not quite right. Try again!');
+            }
+        }
+
+        // Puzzle Game
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.dataset.order);
+        }
+
+        function checkPuzzle() {
+            const blocks = document.querySelectorAll('.puzzle-block');
+            let isCorrect = true;
+            
+            blocks.forEach((block, index) => {
+                if (parseInt(block.dataset.order) !== index + 1) {
+                    isCorrect = false;
+                }
+            });
+            
+            if (isCorrect) {
+                alert('🎉 Perfect! You solved the puzzle!');
+            } else {
+                alert('🤔 Not quite right. Keep trying!');
+            }
+        }
+
+        // Close modals when clicking outside
+        document.querySelectorAll('.game-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeGame();
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9880383635e92ef2',t:'MTc1OTM2NjM3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
