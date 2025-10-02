@@ -1,0 +1,2 @@
+Lumen is newer version of the deprecated Luminite that used to be popular on replit. Instead of focused on bypassing school and using games, Lumen is more focused for mature people who want to learn how to code and even make their own websites and learn web development. 
+On Lumen, it is incredibly simple to stat learning Python, HTML, JS, CSS, and React. We are focused NOT on making games, and we don't want them used as such. if there are any games, they are likely examples for embedding code/websites into an iframe.
