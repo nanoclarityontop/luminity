@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminite - Code & Play</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300d4ff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff00ff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M20 20 L60 20 Q70 20 70 30 L70 40 Q70 45 75 45 Q80 45 80 40 L80 30 Q80 20 90 20 L90 60 Q90 70 80 70 L70 70 Q65 70 65 75 Q65 80 70 80 L80 80 Q90 80 90 90 L50 90 Q40 90 40 80 L40 70 Q40 65 35 65 Q30 65 30 70 L30 80 Q30 90 20 90 L20 50 Q20 40 30 40 L40 40 Q45 40 45 35 Q45 30 40 30 L30 30 Q20 30 20 20 Z' fill='url(%23grad)' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300d4ff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff00ff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M20 20 L60 20 Q70 20 70 30 L70 40 Q70 45 75 45 Q80 45 80 40 L80 30 Q80 20 90 20 L90 60 Q90 70 80 70 L70 70 Q65 70 65 75 Q65 80 70 80 L80 80 Q90 80 90 90 L50 90 Q40 90 40 80 L40 70 Q40 65 35 65 Q30 65 30 70 L30 80 Q30 90 20 90 L20 50 Q20 40 30 40 L40 40 Q45 40 45 35 Q45 30 40 30 L30 30 Q20 30 20 20 Z' fill='url(%23grad)' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
     <style>
         body {
             box-sizing: border-box;
@@ -292,6 +294,8 @@
             max-width: 600px;
             width: 100%;
             text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .close-button {
@@ -315,6 +319,68 @@
             align-items: center;
             justify-content: center;
         }
+
+        /* Learning Module Styles */
+        .learning-content {
+            text-align: left;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .learning-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #00ff88;
+        }
+
+        .code-example {
+            background: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .memory-card {
+            background: #1a1a2e;
+            border: 1px solid #00d4ff;
+            border-radius: 5px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .memory-card:hover {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+
+        .memory-card.flipped {
+            background: #00ff88;
+            color: #1a1a2e;
+        }
+
+        .puzzle-block {
+            background: #1a1a2e;
+            border: 1px solid #ff00ff;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            cursor: move;
+            display: inline-block;
+            font-family: monospace;
+        }
+
+        .puzzle-block:hover {
+            background: #ff00ff;
+            color: #1a1a2e;
+        }
     </style>
 </head>
 <body>
@@ -324,6 +390,7 @@
             <div class="logo">✨ Luminite</div>
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('apps')">Apps</a></li>
                 <li><a href="#" onclick="showPage('games')">Games</a></li>
                 <li><a href="#" onclick="showPage('coding')">Coding</a></li>
                 <li><a href="#" onclick="showPage('tutorials')">Tutorials</a></li>
@@ -361,6 +428,27 @@
         </div>
     </div>
 
+    <!-- Apps Page -->
+    <div id="apps" class="page">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">📱 App Collection</h2>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="openMovieWeb()" style="cursor: pointer;">
+                    <div class="game-title">🎬 MovieWeb</div>
+                    <p>Access multiple movie streaming platforms and services in one convenient location.</p>
+                    <button class="play-button">View Options</button>
+                </div>
+                
+                <div class="game-card" onclick="alert('More apps coming soon! 🚀')" style="cursor: pointer;">
+                    <div class="game-title">🔧 More Apps</div>
+                    <p>Additional applications and tools will be added here soon!</p>
+                    <button class="play-button">Coming Soon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Games Page -->
     <div id="games" class="page">
         <div class="container">
@@ -390,6 +478,36 @@
                     <p>Solve algorithmic puzzles and improve your problem-solving skills.</p>
                     <button class="play-button">Play Now</button>
                 </div>
+                
+                <div class="game-card" onclick="openGame('lol')">
+                    <div class="game-title">⚔️ 1v1 LOL</div>
+                    <p>Epic 1v1 battle arena! Build, shoot, and outplay your opponent in this fast-paced combat game.</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('king')">
+                    <div class="game-title">👑 King</div>
+                    <p>Rule your kingdom and conquer territories in this strategic battle game!</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('tombstone')">
+                    <div class="game-title">🪦 Tombstone</div>
+                    <p>Survive the wild west in this action-packed adventure game!</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('rocket')">
+                    <div class="game-title">🚀 Rocket Soccer</div>
+                    <p>Score goals with rocket-powered cars in this high-octane sports game!</p>
+                    <button class="play-button">Play Now</button>
+                </div>
+                
+                <div class="game-card" onclick="openGame('subway')">
+                    <div class="game-title">🚇 Subway Surfers</div>
+                    <p>Run through the subway tracks and dodge obstacles in this endless runner!</p>
+                    <button class="play-button">Play Now</button>
+                </div>
             </div>
         </div>
     </div>
@@ -400,27 +518,66 @@
             <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">💻 Code Playground</h2>
             
             <div class="features">
-                <div class="feature-card">
+                <div class="feature-card" onclick="openLearningModule('python')" style="cursor: pointer;">
                     <h3>🐍 Python Basics</h3>
                     <p>Learn Python fundamentals with interactive examples and exercises.</p>
+                    <button class="play-button" style="margin-top: 1rem;">Start Learning</button>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" onclick="openLearningModule('web')" style="cursor: pointer;">
                     <h3>🌐 Web Development</h3>
                     <p>Master HTML, CSS, and JavaScript to build amazing web applications.</p>
+                    <button class="play-button" style="margin-top: 1rem;">Start Learning</button>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" onclick="openLearningModule('react')" style="cursor: pointer;">
                     <h3>⚛️ React & Beyond</h3>
                     <p>Dive into modern frameworks and build dynamic user interfaces.</p>
+                    <button class="play-button" style="margin-top: 1rem;">Start Learning</button>
                 </div>
             </div>
 
-            <div class="code-editor">
-                <div class="code-line"><span class="comment">// Welcome to Luminite Code Playground</span></div>
-                <div class="code-line"><span class="keyword">function</span> <span style="color: #dcdcaa;">welcomeToLuminite</span>() {</div>
-                <div class="code-line">&nbsp;&nbsp;<span class="keyword">const</span> <span style="color: #9cdcfe;">message</span> = <span class="string">"Start your coding journey!"</span>;</div>
-                <div class="code-line">&nbsp;&nbsp;<span style="color: #dcdcaa;">console.log</span>(<span style="color: #9cdcfe;">message</span>);</div>
-                <div class="code-line">&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Happy coding! 🚀"</span>;</div>
-                <div class="code-line">}</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                <!-- Code Editor -->
+                <div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <h4 style="color: #00ff88; margin: 0; margin-right: 2rem;">✨ Code Editor</h4>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button id="js-tab" onclick="switchToJS()" style="background: #00ff88; color: #1a1a2e; border: none; padding: 0.5rem 1rem; border-radius: 5px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">JavaScript</button>
+                            <button id="bookmarklet-tab" onclick="switchToBookmarklet()" style="background: #333; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">Bookmarklet</button>
+                        </div>
+                    </div>
+                    <textarea id="code-input" style="width: 100%; height: 200px; background: #1e1e1e; color: #d4d4d4; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; resize: vertical;">// Welcome to Luminite Code Playground
+function welcomeToLuminite() {
+  const message = "Start your coding journey!";
+  console.log(message);
+  return "Happy coding! 🚀";
+}
+
+// Try running the function!
+welcomeToLuminite();</textarea>
+                    <div style="margin-top: 1rem;">
+                        <button onclick="runCode()" style="background: linear-gradient(45deg, #00ff88, #00d4ff); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer; margin-right: 1rem;">▶️ Run Code</button>
+                        <button onclick="clearConsole()" style="background: #ff4444; color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer;">🗑️ Clear Console</button>
+                    </div>
+                    <div id="bookmarklet-examples" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <h5 style="color: #ff00ff; margin-bottom: 0.5rem;">📚 Example Bookmarklets:</h5>
+                        <button onclick="loadExample('rainbow')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">🌈 Rainbow Background</button>
+                        <button onclick="loadExample('highlight')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">🔗 Highlight Links</button>
+                        <button onclick="loadExample('dance')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">💃 Make Page Dance</button>
+                        <button onclick="loadExample('dark')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">🌙 Dark Mode</button>
+                        <button onclick="loadExample('edpuzzle')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">🧩 Edpuzzle</button>
+                        <button onclick="loadExample('minecraft')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">⛏️ Minecraft</button>
+                        <button onclick="loadExample('proxy')" style="background: #333; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 3px; margin: 0.2rem; cursor: pointer; font-size: 0.8rem;">🌐 Translate Proxy</button>
+                    </div>
+                </div>
+
+                <!-- Console Output -->
+                <div>
+                    <h4 style="color: #ff00ff; margin-bottom: 1rem;">🖥️ Console Output</h4>
+                    <div id="console-output" style="width: 100%; height: 200px; background: #0a0a0a; color: #00ff88; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; overflow-y: auto; white-space: pre-wrap;">Welcome to Luminite Console! 🚀
+Type some JavaScript code and click "Run Code" to see the output.
+
+</div>
+                </div>
             </div>
         </div>
     </div>
@@ -449,8 +606,40 @@
             </div>
 
             <div style="text-align: center; margin: 3rem 0;">
-                <h3 style="color: #00ff88;">🌟 Featured Tutorial Series</h3>
-                <p style="font-size: 1.1rem; opacity: 0.9;">Interactive coding tutorials that adapt to your learning pace</p>
+                <h3 style="color: #00ff88;">🌟 Featured Tutorial Videos</h3>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Learn from the best coding tutorials on YouTube</p>
+                
+                <div class="features" style="margin-top: 2rem;">
+                    <div class="feature-card">
+                        <h4>🐍 Python for Beginners</h4>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 1rem 0;">
+                            <iframe src="https://www.youtube.com/embed/rfscVS0vtbw" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <p>Complete Python tutorial for absolute beginners</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🌐 HTML & CSS Crash Course</h4>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 1rem 0;">
+                            <iframe src="https://www.youtube.com/embed/UB1O30fR-EE" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <p>Learn web development fundamentals in one video</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>⚛️ React Tutorial</h4>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 1rem 0;">
+                            <iframe src="https://www.youtube.com/embed/Ke90Tje7VS0" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <p>Master React from scratch with this comprehensive guide</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -494,6 +683,38 @@
                 <h3 style="color: #00d4ff;">🙏 Special Thanks</h3>
                 <p>To our amazing community of learners and contributors who make Luminite possible!</p>
                 <p style="opacity: 0.7;">Built with ❤️ for the coding community</p>
+            </div>
+
+            <div style="margin: 3rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 12px;">
+                <h3 style="color: #ff00ff; text-align: center; margin-bottom: 2rem;">📚 Content Sources & Attribution</h3>
+                
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 4px solid #00ff88;">
+                    <h4 style="color: #00ff88;">🐍 Python Programming Content</h4>
+                    <p><strong>Source:</strong> Adapted from Python.org Official Documentation and "Automate the Boring Stuff with Python" by Al Sweigart</p>
+                    <p><strong>Original Publication:</strong> Python Software Foundation (1991-present), No Starch Press (2015)</p>
+                    <p><strong>Content Focus:</strong> Python fundamentals, data types, control structures, functions, and best practices</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;"><strong>Attribution:</strong> Content synthesized and adapted for educational purposes from official Python documentation and established programming education resources.</p>
+                </div>
+
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 4px solid #00d4ff;">
+                    <h4 style="color: #00d4ff;">🌐 Web Development Content</h4>
+                    <p><strong>Source:</strong> Compiled from MDN Web Docs (Mozilla Developer Network) and "HTML and CSS: Design and Build Websites" by Jon Duckett</p>
+                    <p><strong>Original Publication:</strong> Mozilla Foundation (2005-present), Wiley (2011)</p>
+                    <p><strong>Content Focus:</strong> HTML structure, CSS styling, JavaScript fundamentals, modern web development practices</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;"><strong>Attribution:</strong> Educational content derived from industry-standard web development documentation and established learning resources.</p>
+                </div>
+
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 4px solid #ff00ff;">
+                    <h4 style="color: #ff00ff;">⚛️ React Development Content</h4>
+                    <p><strong>Source:</strong> Based on React Official Documentation and "Learning React" by Alex Banks and Eve Porcello</p>
+                    <p><strong>Original Publication:</strong> Facebook/Meta (2013-present), O'Reilly Media (2020)</p>
+                    <p><strong>Content Focus:</strong> React components, hooks, state management, modern React patterns and ecosystem</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;"><strong>Attribution:</strong> Content adapted from official React documentation and recognized React education materials for comprehensive learning.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+                    <p style="font-size: 0.9rem; opacity: 0.7;"><strong>Disclaimer:</strong> All content has been adapted, synthesized, and restructured for educational purposes. Original sources retain their respective copyrights. This educational material is provided for learning and reference purposes only.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -569,42 +790,865 @@
         </div>
     </div>
 
-    <style>
-        .memory-card {
-            background: #1a1a2e;
-            border: 1px solid #00d4ff;
-            border-radius: 5px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    <div id="lol-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>⚔️ 1v1 LOL - Real Game</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <p style="color: #00ff88;">🎮 Authentic 1v1.lol experience embedded directly in your browser!</p>
+                <button onclick="window.open('https://nowcollege.com/uploads/5/5/6/7/5567194/custom_themes/23/1v1_lol.html', '_blank', 'noopener,noreferrer')" 
+                        style="padding: 0.5rem 1rem; background: #ff00ff; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0.5rem;">
+                    🔗 Open in New Tab
+                </button>
+            </div>
+            <iframe src="https://nowcollege.com/uploads/5/5/6/7/5567194/custom_themes/23/1v1_lol.html" 
+                    width="100%" 
+                    height="600" 
+                    style="border: 2px solid #00ff88; border-radius: 8px; background: #000;"
+                    allowfullscreen>
+            </iframe>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.8;">If the game doesn't load, try refreshing or check your internet connection.</p>
+            </div>
+        </div>
+    </div>
 
-        .memory-card:hover {
-            background: #00d4ff;
-            color: #1a1a2e;
-        }
+    <div id="king-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>👑 King - Real Game</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <p style="color: #00ff88;">🎮 Rule your kingdom and conquer territories!</p>
+                <button onclick="window.open('https://basketrandom.vercel.app/go/class-580.html', '_blank', 'noopener,noreferrer')" 
+                        style="padding: 0.5rem 1rem; background: #ff00ff; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0.5rem;">
+                    🔗 Open in New Tab
+                </button>
+            </div>
+            <iframe src="https://basketrandom.vercel.app/go/class-580.html" 
+                    width="100%" 
+                    height="600" 
+                    style="border: 2px solid #00ff88; border-radius: 8px; background: #000;"
+                    allowfullscreen>
+            </iframe>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.8;">If the game doesn't load, try refreshing or check your internet connection.</p>
+            </div>
+        </div>
+    </div>
 
-        .memory-card.flipped {
-            background: #00ff88;
-            color: #1a1a2e;
-        }
+    <div id="tombstone-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🪦 Tombstone - Real Game</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <p style="color: #00ff88;">🎮 Survive the wild west adventure!</p>
+                <button onclick="window.open('https://basketrandom.vercel.app/go/class-438.html', '_blank', 'noopener,noreferrer')" 
+                        style="padding: 0.5rem 1rem; background: #ff00ff; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0.5rem;">
+                    🔗 Open in New Tab
+                </button>
+            </div>
+            <iframe src="https://basketrandom.vercel.app/go/class-438.html" 
+                    width="100%" 
+                    height="600" 
+                    style="border: 2px solid #00ff88; border-radius: 8px; background: #000;"
+                    allowfullscreen>
+            </iframe>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.8;">If the game doesn't load, try refreshing or check your internet connection.</p>
+            </div>
+        </div>
+    </div>
 
-        .puzzle-block {
-            background: #1a1a2e;
-            border: 1px solid #ff00ff;
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem;
-            cursor: move;
-            display: inline-block;
-            font-family: monospace;
-        }
+    <div id="rocket-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🚀 Rocket Soccer - Real Game</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <p style="color: #00ff88;">🎮 Score goals with rocket-powered cars!</p>
+                <button onclick="window.open('https://basketrandom.vercel.app/go/class-527.html', '_blank', 'noopener,noreferrer')" 
+                        style="padding: 0.5rem 1rem; background: #ff00ff; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0.5rem;">
+                    🔗 Open in New Tab
+                </button>
+            </div>
+            <iframe src="https://basketrandom.vercel.app/go/class-527.html" 
+                    width="100%" 
+                    height="600" 
+                    style="border: 2px solid #00ff88; border-radius: 8px; background: #000;"
+                    allowfullscreen>
+            </iframe>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.8;">If the game doesn't load, try refreshing or check your internet connection.</p>
+            </div>
+        </div>
+    </div>
 
-        .puzzle-block:hover {
-            background: #ff00ff;
-            color: #1a1a2e;
+    <div id="subway-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeGame()">&times;</button>
+            <h3>🚇 Subway Surfers - Real Game</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <p style="color: #00ff88;">🎮 Run through the subway and dodge obstacles!</p>
+                <button onclick="window.open('https://basketrandom.vercel.app/go/class-444.html', '_blank', 'noopener,noreferrer')" 
+                        style="padding: 0.5rem 1rem; background: #ff00ff; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0.5rem;">
+                    🔗 Open in New Tab
+                </button>
+            </div>
+            <iframe src="https://basketrandom.vercel.app/go/class-444.html" 
+                    width="100%" 
+                    height="600" 
+                    style="border: 2px solid #00ff88; border-radius: 8px; background: #000;"
+                    allowfullscreen>
+            </iframe>
+            <div style="margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.8;">If the game doesn't load, try refreshing or check your internet connection.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MovieWeb Modal -->
+    <div id="movieweb-modal" class="game-modal">
+        <div class="game-content" style="max-width: 95vw; max-height: 95vh; padding: 1rem;">
+            <button class="close-button" onclick="closeMovieWeb()">&times;</button>
+            <h3>🎬 MovieWeb - Streaming Services</h3>
+            <div class="learning-content" style="max-height: 80vh; overflow-y: auto;">
+                
+                <div class="learning-section">
+                    <h4>🎭 MovieWeb Services</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <a href="https://watchflix.app/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">WatchFlix</h5>
+                            <p>Premium streaming experience</p>
+                        </a>
+                        <a href="https://teamberga.xyz/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">TeamBerga</h5>
+                            <p>Community-driven platform</p>
+                        </a>
+                        <a href="https://scootydooter.vercel.app/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">ScootyDooter</h5>
+                            <p>Fast streaming service</p>
+                        </a>
+                        <a href="https://movie-web-lac-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">MovieWeb Lac</h5>
+                            <p>Alternative streaming option</p>
+                        </a>
+                        <a href="https://movie-web-xlta.vercel.app/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">MovieWeb XLTA</h5>
+                            <p>Enhanced viewing experience</p>
+                        </a>
+                        <a href="https://ephemeral-cheesecake-17073d.netlify.app/" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff88;">Ephemeral Cheesecake</h5>
+                            <p>Unique streaming platform</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>📺 Google Slides Movie Services</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <a href="https://docs.google.com/presentation/d/149GpUX0v2xNpwbUTv0Ra1bXSBJ8VImN3yQXMYA9ZhKA/edit" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #ff0000;">Netflix Alternative</h5>
+                            <p>Netflix-style content via Google Slides</p>
+                        </a>
+                        <a href="https://docs.google.com/presentation/d/1cqMoS7rNvOX77938GusdWNi6mYVPOfETCVsAVW9I9ps/edit" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #0066cc;">Disney+ Alternative</h5>
+                            <p>Disney+ content via Google Slides</p>
+                        </a>
+                        <a href="https://docs.google.com/presentation/d/1YDZCGRJMcIXA6CDnnxEUcNuZuEx-NdUETeeVFulhYDg/edit" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00cc66;">Hulu Alternative</h5>
+                            <p>Hulu content via Google Slides</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>🌐 Other Movie Sites</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin: 1rem 0;">
+                        <a href="https://onionplay.se/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">OnionPlay</a>
+                        <a href="https://serieshd.watch/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">SeriesHD</a>
+                        <a href="https://movie4kto.net/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Movie4K</a>
+                        <a href="https://sites.google.com/view/sealflix" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">SealFlix</a>
+                        <a href="https://flixwave.to/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">FlixWave</a>
+                        <a href="https://shuttletv.net/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">ShuttleTV</a>
+                        <a href="https://movieshd.watch/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">MoviesHD</a>
+                        <a href="https://soap2dayhd.com/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Soap2Day</a>
+                        <a href="https://freemoviesfull.cc/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">FreeMoviesFull</a>
+                        <a href="https://watchfreemovi.es/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">WatchFreeMovies</a>
+                        <a href="https://flixhd.cc/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">FlixHD</a>
+                        <a href="https://quitt.net/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Quitt</a>
+                        <a href="https://tikmovies.com/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">TikMovies</a>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>🎞️ Movie Recordings</h4>
+                    <div style="margin: 1rem 0;">
+                        <h5 style="color: #00d4ff; margin-bottom: 1rem;">Individual Movies</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                            <a href="https://drive.google.com/file/d/1-bYIrWe0duy7IT8p2z0JKIA9sYrSRO8L/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit; padding: 1rem; text-align: center;">
+                                <h6 style="color: #ffff00; margin-bottom: 0.5rem;">🧽 SpongeBob Movie</h6>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">The SpongeBob SquarePants Movie</p>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1-J7v3NOfQxngx50U66dELoa5P17m2xDP/view" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit; padding: 1rem; text-align: center;">
+                                <h6 style="color: #ff6b6b; margin-bottom: 0.5rem;">🎤 Sing (2016)</h6>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">Animated musical comedy film</p>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1uqHaBulJOC3wjc1gnotbY__QrMcDr7Tz/view" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit; padding: 1rem; text-align: center;">
+                                <h6 style="color: #4ecdc4; margin-bottom: 0.5rem;">🎵 Sing 2 (2021)</h6>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">The sequel to the hit musical</p>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1DRTfnpCiVdPzwsWMKqQndMnTgxlyACXW/view" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit; padding: 1rem; text-align: center;">
+                                <h6 style="color: #9b59b6; margin-bottom: 0.5rem;">🧠 Inside Out</h6>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">Pixar's emotional adventure</p>
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <a href="https://docs.google.com/document/d/1Ed0x9WpogjRGzER_5lUqI807QS0MEuDM31OFnRs8a-A/edit#heading=h.ypawngwfb7l9" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit; display: block; padding: 1.5rem; text-align: center; border: 2px solid #ff00ff;">
+                                <h5 style="color: #ff00ff; margin-bottom: 0.5rem;">📚 Complete Movie Collection</h5>
+                                <p style="margin: 0; font-size: 1rem;">Access hundreds more movies in this comprehensive Google Document with organized categories and direct links</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>📺 TV Shows</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <a href="https://drive.google.com/drive/folders/1cOFMumtLFERJqS6Y5oTyBb6ZRXNHCgZF?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #ffff00;">SpongeBob SquarePants</h5>
+                            <p>Seasons 1-14 Complete</p>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/11W6C-Jqv9iQVasqjfiaYz77puax1UTjH?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #ff6600;">Family Guy</h5>
+                            <p>Seasons 1-22 Complete</p>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ccff;">South Park</h5>
+                            <p>Complete Series</p>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/17ODzdQoYZZxX6ANHFLo0tD1UIkllvCui?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #00ff99;">Rick and Morty</h5>
+                            <p>Complete Series</p>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1I7-ZUInlg9jb4R6LGq0qX3n7bjGKPFFO?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #ffcc00;">Pokémon</h5>
+                            <p>Complete Series</p>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1ZtFBjPAE-qVzdHJ3EKnvlBFNhux5m3Hi?usp=drive_link" target="_blank" rel="noopener noreferrer" class="feature-card" style="text-decoration: none; color: inherit;">
+                            <h5 style="color: #ffff99;">The Simpsons</h5>
+                            <p>Complete Series</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>🎌 Anime</h4>
+                    <div style="margin: 1rem 0;">
+                        <h5 style="color: #ff00ff;">Streaming Sites</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin: 0.5rem 0;">
+                            <a href="https://anix.to/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Anix</a>
+                            <a href="https://kaido.to/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Kaido</a>
+                            <a href="https://animeflix.live/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">AnimeFlix</a>
+                            <a href="https://moopa.live/" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Moopa</a>
+                        </div>
+                        
+                        <h5 style="color: #ff6666; margin-top: 1.5rem;">Demon Slayer Season 1 (Episodes 1-6)</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; margin: 0.5rem 0;">
+                            <a href="https://drive.google.com/file/d/16ApJR3QbXonfkNXPNmt2gWj6n24-0PaO/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 1</a>
+                            <a href="https://drive.google.com/file/d/1fK6TzSyBqeQH0YiHOj2dubiv-lc0FRfS/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 2</a>
+                            <a href="https://drive.google.com/file/d/1fK6TzSyBqeQH0YiHOj2dubiv-lc0FRfS/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 3</a>
+                            <a href="https://drive.google.com/file/d/1N8wIzuscxJWkLG9UQbFPldazlqHv96Tm/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 4</a>
+                            <a href="https://drive.google.com/file/d/18RaZN2O_HxnLVcAsHAF7vUuOV3EKaClJ/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 5</a>
+                            <a href="https://drive.google.com/file/d/1WSSewkcYjggHl_cPo2gV-vxnX9MK0bZL/view" target="_blank" rel="noopener noreferrer" class="memory-card" style="text-decoration: none; color: inherit; text-align: center;">Episode 6</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 2rem 0; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                    <p style="color: #ff6666; font-weight: bold;">⚠️ Disclaimer</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">These links are provided for educational purposes. Please ensure you comply with your local laws and the terms of service of these platforms. Luminite is not responsible for the content or availability of external sites.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Module Modals -->
+    <div id="python-modal" class="game-modal">
+        <div class="game-content" style="max-width: 800px;">
+            <button class="close-button" onclick="closeLearningModule()">&times;</button>
+            <h3>🐍 Python Basics</h3>
+            <div class="learning-content">
+                <div class="learning-section">
+                    <h4>What is Python?</h4>
+                    <p>Python is a high-level, interpreted programming language created by Guido van Rossum and first released in 1991. Named after the British comedy group Monty Python, it was designed with an emphasis on code readability and simplicity. Python's philosophy is encapsulated in "The Zen of Python," which includes principles like "Beautiful is better than ugly" and "Simple is better than complex."</p>
+                    
+                    <p>Python is known for its clean, readable syntax that closely resembles natural language. This makes it an excellent choice for beginners while remaining powerful enough for complex applications. Python is used in web development, data science, artificial intelligence, automation, scientific computing, and more.</p>
+                    
+                    <p><strong>Key Features of Python:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Easy to Learn:</strong> Simple syntax and readable code</li>
+                        <li><strong>Interpreted:</strong> No compilation step needed</li>
+                        <li><strong>Cross-platform:</strong> Runs on Windows, Mac, Linux, and more</li>
+                        <li><strong>Extensive Libraries:</strong> Huge ecosystem of third-party packages</li>
+                        <li><strong>Versatile:</strong> Used in many different domains</li>
+                    </ul>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Variables and Data Types</h4>
+                    <p>In Python, variables are containers for storing data values. Unlike many other programming languages, Python uses dynamic typing, which means you don't need to declare the type of a variable when you create it. The Python interpreter automatically determines the type based on the value assigned.</p>
+                    
+                    <p><strong>Python's Built-in Data Types:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Integers (int):</strong> Whole numbers like 42, -17, 0</li>
+                        <li><strong>Floats (float):</strong> Decimal numbers like 3.14, -0.5, 2.0</li>
+                        <li><strong>Strings (str):</strong> Text data like "Hello", 'Python', "123"</li>
+                        <li><strong>Booleans (bool):</strong> True or False values</li>
+                        <li><strong>Lists:</strong> Ordered collections of items</li>
+                        <li><strong>Dictionaries:</strong> Key-value pairs</li>
+                    </ul>
+                    
+                    <div class="code-example">
+<span class="comment"># Variables and Data Types in Python</span>
+<span style="color: #9cdcfe;">name</span> = <span class="string">"Alice"</span>                    <span class="comment"># String</span>
+<span style="color: #9cdcfe;">age</span> = <span style="color: #b5cea8;">25</span>                         <span class="comment"># Integer</span>
+<span style="color: #9cdcfe;">height</span> = <span style="color: #b5cea8;">5.6</span>                     <span class="comment"># Float</span>
+<span style="color: #9cdcfe;">is_student</span> = <span style="color: #569cd6;">True</span>               <span class="comment"># Boolean</span>
+<span style="color: #9cdcfe;">hobbies</span> = [<span class="string">"reading"</span>, <span class="string">"coding"</span>]    <span class="comment"># List</span>
+
+<span class="comment"># Check the type of a variable</span>
+<span style="color: #dcdcaa;">print</span>(<span style="color: #dcdcaa;">type</span>(<span style="color: #9cdcfe;">name</span>))        <span class="comment"># &lt;class 'str'&gt;</span>
+<span style="color: #dcdcaa;">print</span>(<span style="color: #dcdcaa;">type</span>(<span style="color: #9cdcfe;">age</span>))         <span class="comment"># &lt;class 'int'&gt;</span>
+
+<span class="comment"># String formatting (f-strings)</span>
+<span style="color: #9cdcfe;">message</span> = <span style="color: #ce9178;">f"Hi, I'm {name} and I'm {age} years old"</span>
+<span style="color: #dcdcaa;">print</span>(<span style="color: #9cdcfe;">message</span>)
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Control Structures</h4>
+                    <p>Control structures allow you to control the flow of your program's execution. Python provides several types of control structures including conditional statements (if, elif, else) and loops (for, while). These structures enable you to make decisions and repeat actions in your code.</p>
+                    
+                    <p><strong>Conditional Statements:</strong> Allow your program to make decisions based on different conditions. Python uses indentation (whitespace) to define code blocks, which makes the code very readable.</p>
+                    
+                    <div class="code-example">
+<span class="comment"># Conditional Statements</span>
+<span style="color: #9cdcfe;">temperature</span> = <span style="color: #b5cea8;">75</span>
+
+<span class="keyword">if</span> <span style="color: #9cdcfe;">temperature</span> > <span style="color: #b5cea8;">80</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"It's hot outside!"</span>)
+<span class="keyword">elif</span> <span style="color: #9cdcfe;">temperature</span> > <span style="color: #b5cea8;">60</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"Nice weather!"</span>)
+<span class="keyword">else</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"It's cold outside!"</span>)
+
+<span class="comment"># For loops - iterate over sequences</span>
+<span style="color: #9cdcfe;">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+<span class="keyword">for</span> <span style="color: #9cdcfe;">fruit</span> <span class="keyword">in</span> <span style="color: #9cdcfe;">fruits</span>:
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"I like {fruit}"</span>)
+
+<span class="comment"># While loops - repeat while condition is true</span>
+<span style="color: #9cdcfe;">count</span> = <span style="color: #b5cea8;">0</span>
+<span class="keyword">while</span> <span style="color: #9cdcfe;">count</span> < <span style="color: #b5cea8;">3</span>:
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"Count is: {count}"</span>)
+    <span style="color: #9cdcfe;">count</span> += <span style="color: #b5cea8;">1</span>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Functions</h4>
+                    <p>Functions are reusable blocks of code that perform specific tasks. They help organize your code, make it more readable, and follow the DRY (Don't Repeat Yourself) principle. Functions can accept parameters (inputs) and return values (outputs).</p>
+                    
+                    <p>Python functions are defined using the <code>def</code> keyword, followed by the function name and parentheses containing any parameters. The function body is indented and can include a return statement to send a value back to the caller.</p>
+                    
+                    <div class="code-example">
+<span class="comment"># Basic function definition</span>
+<span class="keyword">def</span> <span style="color: #dcdcaa;">greet</span>(<span style="color: #9cdcfe;">name</span>):
+    <span class="string">"""This function greets someone"""</span>
+    <span class="keyword">return</span> <span style="color: #ce9178;">f"Hello, {name}!"</span>
+
+<span class="comment"># Function with multiple parameters and default values</span>
+<span class="keyword">def</span> <span style="color: #dcdcaa;">calculate_area</span>(<span style="color: #9cdcfe;">length</span>, <span style="color: #9cdcfe;">width</span>=<span style="color: #b5cea8;">1</span>):
+    <span class="string">"""Calculate the area of a rectangle"""</span>
+    <span style="color: #9cdcfe;">area</span> = <span style="color: #9cdcfe;">length</span> * <span style="color: #9cdcfe;">width</span>
+    <span class="keyword">return</span> <span style="color: #9cdcfe;">area</span>
+
+<span class="comment"># Function that returns multiple values</span>
+<span class="keyword">def</span> <span style="color: #dcdcaa;">get_name_parts</span>(<span style="color: #9cdcfe;">full_name</span>):
+    <span class="string">"""Split a full name into first and last name"""</span>
+    <span style="color: #9cdcfe;">parts</span> = <span style="color: #9cdcfe;">full_name</span>.<span style="color: #dcdcaa;">split</span>()
+    <span style="color: #9cdcfe;">first_name</span> = <span style="color: #9cdcfe;">parts</span>[<span style="color: #b5cea8;">0</span>]
+    <span style="color: #9cdcfe;">last_name</span> = <span style="color: #9cdcfe;">parts</span>[-<span style="color: #b5cea8;">1</span>] <span class="keyword">if</span> <span style="color: #dcdcaa;">len</span>(<span style="color: #9cdcfe;">parts</span>) > <span style="color: #b5cea8;">1</span> <span class="keyword">else</span> <span class="string">""</span>
+    <span class="keyword">return</span> <span style="color: #9cdcfe;">first_name</span>, <span style="color: #9cdcfe;">last_name</span>
+
+<span class="comment"># Using the functions</span>
+<span style="color: #9cdcfe;">message</span> = <span style="color: #dcdcaa;">greet</span>(<span class="string">"Alice"</span>)
+<span style="color: #dcdcaa;">print</span>(<span style="color: #9cdcfe;">message</span>)
+
+<span style="color: #9cdcfe;">rectangle_area</span> = <span style="color: #dcdcaa;">calculate_area</span>(<span style="color: #b5cea8;">5</span>, <span style="color: #b5cea8;">3</span>)
+<span style="color: #9cdcfe;">square_area</span> = <span style="color: #dcdcaa;">calculate_area</span>(<span style="color: #b5cea8;">4</span>)  <span class="comment"># Uses default width=1</span>
+
+<span style="color: #9cdcfe;">first</span>, <span style="color: #9cdcfe;">last</span> = <span style="color: #dcdcaa;">get_name_parts</span>(<span class="string">"John Doe"</span>)
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Lists and Data Structures</h4>
+                    <p>Python provides several built-in data structures that allow you to organize and manipulate data efficiently. Lists are one of the most versatile and commonly used data structures in Python. They are ordered, mutable (changeable), and can contain items of different data types.</p>
+                    
+                    <p><strong>Key Data Structures in Python:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Lists:</strong> Ordered, mutable collections [1, 2, 3]</li>
+                        <li><strong>Tuples:</strong> Ordered, immutable collections (1, 2, 3)</li>
+                        <li><strong>Dictionaries:</strong> Key-value pairs {"name": "Alice"}</li>
+                        <li><strong>Sets:</strong> Unordered collections of unique items {1, 2, 3}</li>
+                    </ul>
+                    
+                    <div class="code-example">
+<span class="comment"># Working with Lists</span>
+<span style="color: #9cdcfe;">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+<span style="color: #9cdcfe;">numbers</span> = [<span style="color: #b5cea8;">1</span>, <span style="color: #b5cea8;">2</span>, <span style="color: #b5cea8;">3</span>, <span style="color: #b5cea8;">4</span>, <span style="color: #b5cea8;">5</span>]
+
+<span class="comment"># List methods</span>
+<span style="color: #9cdcfe;">fruits</span>.<span style="color: #dcdcaa;">append</span>(<span class="string">"grape"</span>)        <span class="comment"># Add to end</span>
+<span style="color: #9cdcfe;">fruits</span>.<span style="color: #dcdcaa;">insert</span>(<span style="color: #b5cea8;">1</span>, <span class="string">"kiwi"</span>)     <span class="comment"># Insert at index</span>
+<span style="color: #9cdcfe;">fruits</span>.<span style="color: #dcdcaa;">remove</span>(<span class="string">"banana"</span>)     <span class="comment"># Remove by value</span>
+
+<span class="comment"># List comprehensions - powerful way to create lists</span>
+<span style="color: #9cdcfe;">squares</span> = [<span style="color: #9cdcfe;">x</span>**<span style="color: #b5cea8;">2</span> <span class="keyword">for</span> <span style="color: #9cdcfe;">x</span> <span class="keyword">in</span> <span style="color: #9cdcfe;">numbers</span>]
+<span style="color: #9cdcfe;">even_squares</span> = [<span style="color: #9cdcfe;">x</span>**<span style="color: #b5cea8;">2</span> <span class="keyword">for</span> <span style="color: #9cdcfe;">x</span> <span class="keyword">in</span> <span style="color: #9cdcfe;">numbers</span> <span class="keyword">if</span> <span style="color: #9cdcfe;">x</span> % <span style="color: #b5cea8;">2</span> == <span style="color: #b5cea8;">0</span>]
+
+<span class="comment"># Working with Dictionaries</span>
+<span style="color: #9cdcfe;">person</span> = {
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+    <span class="string">"age"</span>: <span style="color: #b5cea8;">30</span>,
+    <span class="string">"city"</span>: <span class="string">"New York"</span>
+}
+
+<span class="comment"># Dictionary operations</span>
+<span style="color: #dcdcaa;">print</span>(<span style="color: #9cdcfe;">person</span>[<span class="string">"name"</span>])           <span class="comment"># Access value</span>
+<span style="color: #9cdcfe;">person</span>[<span class="string">"email"</span>] = <span class="string">"alice@email.com"</span>  <span class="comment"># Add new key-value</span>
+
+<span class="comment"># Iterate through dictionary</span>
+<span class="keyword">for</span> <span style="color: #9cdcfe;">key</span>, <span style="color: #9cdcfe;">value</span> <span class="keyword">in</span> <span style="color: #9cdcfe;">person</span>.<span style="color: #dcdcaa;">items</span>():
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"{key}: {value}"</span>)
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Error Handling</h4>
+                    <p>Error handling is a crucial aspect of writing robust Python programs. Python uses try-except blocks to handle exceptions gracefully, allowing your program to continue running even when unexpected errors occur. This prevents your program from crashing and provides a better user experience.</p>
+                    
+                    <p>Common types of exceptions in Python include ValueError (invalid value), TypeError (wrong type), FileNotFoundError (file doesn't exist), and ZeroDivisionError (division by zero). Proper error handling makes your code more reliable and user-friendly.</p>
+                    
+                    <div class="code-example">
+<span class="comment"># Basic try-except block</span>
+<span class="keyword">try</span>:
+    <span style="color: #9cdcfe;">number</span> = <span style="color: #dcdcaa;">int</span>(<span style="color: #dcdcaa;">input</span>(<span class="string">"Enter a number: "</span>))
+    <span style="color: #9cdcfe;">result</span> = <span style="color: #b5cea8;">10</span> / <span style="color: #9cdcfe;">number</span>
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"Result: {result}"</span>)
+<span class="keyword">except</span> <span style="color: #4ec9b0;">ValueError</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"Please enter a valid number!"</span>)
+<span class="keyword">except</span> <span style="color: #4ec9b0;">ZeroDivisionError</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"Cannot divide by zero!"</span>)
+<span class="keyword">except</span> <span style="color: #4ec9b0;">Exception</span> <span class="keyword">as</span> <span style="color: #9cdcfe;">e</span>:
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">f"An unexpected error occurred: {e}"</span>)
+<span class="keyword">finally</span>:
+    <span style="color: #dcdcaa;">print</span>(<span class="string">"This always executes"</span>)
+
+<span class="comment"># Function with error handling</span>
+<span class="keyword">def</span> <span style="color: #dcdcaa;">safe_divide</span>(<span style="color: #9cdcfe;">a</span>, <span style="color: #9cdcfe;">b</span>):
+    <span class="string">"""Safely divide two numbers"""</span>
+    <span class="keyword">try</span>:
+        <span class="keyword">return</span> <span style="color: #9cdcfe;">a</span> / <span style="color: #9cdcfe;">b</span>
+    <span class="keyword">except</span> <span style="color: #4ec9b0;">ZeroDivisionError</span>:
+        <span style="color: #dcdcaa;">print</span>(<span class="string">"Warning: Division by zero!"</span>)
+        <span class="keyword">return</span> <span style="color: #569cd6;">None</span>
+    <span class="keyword">except</span> <span style="color: #4ec9b0;">TypeError</span>:
+        <span style="color: #dcdcaa;">print</span>(<span class="string">"Error: Both arguments must be numbers!"</span>)
+        <span class="keyword">return</span> <span style="color: #569cd6;">None</span>
+
+<span class="comment"># Using the safe function</span>
+<span style="color: #9cdcfe;">result1</span> = <span style="color: #dcdcaa;">safe_divide</span>(<span style="color: #b5cea8;">10</span>, <span style="color: #b5cea8;">2</span>)    <span class="comment"># Returns 5.0</span>
+<span style="color: #9cdcfe;">result2</span> = <span style="color: #dcdcaa;">safe_divide</span>(<span style="color: #b5cea8;">10</span>, <span style="color: #b5cea8;">0</span>)    <span class="comment"># Returns None</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="web-modal" class="game-modal">
+        <div class="game-content" style="max-width: 800px;">
+            <button class="close-button" onclick="closeLearningModule()">&times;</button>
+            <h3>🌐 Web Development</h3>
+            <div class="learning-content">
+                <div class="learning-section">
+                    <h4>Introduction to Web Development</h4>
+                    <p>Web development is the process of creating websites and web applications that run on the internet or an intranet. It encompasses everything from simple static pages to complex web applications, social networks, and e-commerce platforms. Web development is typically divided into three main areas: frontend (client-side), backend (server-side), and full-stack development.</p>
+                    
+                    <p><strong>Frontend Development</strong> focuses on what users see and interact with directly in their web browsers. This includes the layout, design, and interactive elements of a website. Frontend developers work with HTML for structure, CSS for styling, and JavaScript for interactivity.</p>
+                    
+                    <p><strong>Backend Development</strong> involves server-side programming that powers the functionality behind the scenes. This includes databases, server logic, APIs, and everything that happens on the server before information is sent to the user's browser.</p>
+                    
+                    <p><strong>Full-Stack Development</strong> combines both frontend and backend skills, allowing developers to work on all aspects of web applications from user interface to server infrastructure.</p>
+                </div>
+
+                <div class="learning-section">
+                    <h4>HTML: The Structure of the Web</h4>
+                    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It provides the basic structure and content of web pages using a system of elements and tags. HTML describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+                    
+                    <p>Modern HTML5 introduces semantic elements that provide meaning to the structure of web content. These elements help search engines, screen readers, and other tools understand the content better, improving accessibility and SEO.</p>
+                    
+                    <div class="code-example">
+<span style="color: #808080;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #569cd6;">&lt;html</span> <span style="color: #9cdcfe;">lang</span>=<span class="string">"en"</span><span style="color: #569cd6;">&gt;</span>
+<span style="color: #569cd6;">&lt;head&gt;</span>
+    <span style="color: #569cd6;">&lt;meta</span> <span style="color: #9cdcfe;">charset</span>=<span class="string">"UTF-8"</span><span style="color: #569cd6;">&gt;</span>
+    <span style="color: #569cd6;">&lt;meta</span> <span style="color: #9cdcfe;">name</span>=<span class="string">"viewport"</span> <span style="color: #9cdcfe;">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span><span style="color: #569cd6;">&gt;</span>
+    <span style="color: #569cd6;">&lt;title&gt;</span>Modern Web Page<span style="color: #569cd6;">&lt;/title&gt;</span>
+<span style="color: #569cd6;">&lt;/head&gt;</span>
+<span style="color: #569cd6;">&lt;body&gt;</span>
+    <span style="color: #569cd6;">&lt;header&gt;</span>
+        <span style="color: #569cd6;">&lt;nav&gt;</span>
+            <span style="color: #569cd6;">&lt;ul&gt;</span>
+                <span style="color: #569cd6;">&lt;li&gt;&lt;a</span> <span style="color: #9cdcfe;">href</span>=<span class="string">"#home"</span><span style="color: #569cd6;">&gt;</span>Home<span style="color: #569cd6;">&lt;/a&gt;&lt;/li&gt;</span>
+                <span style="color: #569cd6;">&lt;li&gt;&lt;a</span> <span style="color: #9cdcfe;">href</span>=<span class="string">"#about"</span><span style="color: #569cd6;">&gt;</span>About<span style="color: #569cd6;">&lt;/a&gt;&lt;/li&gt;</span>
+            <span style="color: #569cd6;">&lt;/ul&gt;</span>
+        <span style="color: #569cd6;">&lt;/nav&gt;</span>
+    <span style="color: #569cd6;">&lt;/header&gt;</span>
+    
+    <span style="color: #569cd6;">&lt;main&gt;</span>
+        <span style="color: #569cd6;">&lt;section</span> <span style="color: #9cdcfe;">id</span>=<span class="string">"home"</span><span style="color: #569cd6;">&gt;</span>
+            <span style="color: #569cd6;">&lt;h1&gt;</span>Welcome to Web Development!<span style="color: #569cd6;">&lt;/h1&gt;</span>
+            <span style="color: #569cd6;">&lt;p&gt;</span>This is a semantic HTML5 structure.<span style="color: #569cd6;">&lt;/p&gt;</span>
+        <span style="color: #569cd6;">&lt;/section&gt;</span>
+        
+        <span style="color: #569cd6;">&lt;article&gt;</span>
+            <span style="color: #569cd6;">&lt;h2&gt;</span>Learning HTML<span style="color: #569cd6;">&lt;/h2&gt;</span>
+            <span style="color: #569cd6;">&lt;p&gt;</span>HTML provides structure and meaning to content.<span style="color: #569cd6;">&lt;/p&gt;</span>
+        <span style="color: #569cd6;">&lt;/article&gt;</span>
+    <span style="color: #569cd6;">&lt;/main&gt;</span>
+    
+    <span style="color: #569cd6;">&lt;footer&gt;</span>
+        <span style="color: #569cd6;">&lt;p&gt;</span>&copy; 2024 Web Development Tutorial<span style="color: #569cd6;">&lt;/p&gt;</span>
+    <span style="color: #569cd6;">&lt;/footer&gt;</span>
+<span style="color: #569cd6;">&lt;/body&gt;</span>
+<span style="color: #569cd6;">&lt;/html&gt;</span>
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>CSS: Styling and Layout</h4>
+                    <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media. It's one of the cornerstone technologies of the World Wide Web, alongside HTML and JavaScript.</p>
+                    
+                    <p>Modern CSS includes powerful layout systems like Flexbox and CSS Grid, which make it easier to create responsive designs that work across different screen sizes and devices. CSS also supports animations, transitions, and advanced selectors that enable rich, interactive user experiences.</p>
+                    
+                    <div class="code-example">
+<span class="comment">/* Modern CSS with Flexbox and Grid */</span>
+<span style="color: #d7ba7d;">*</span> {
+    <span style="color: #9cdcfe;">box-sizing</span>: <span class="string">border-box</span>;
+    <span style="color: #9cdcfe;">margin</span>: <span style="color: #b5cea8;">0</span>;
+    <span style="color: #9cdcfe;">padding</span>: <span style="color: #b5cea8;">0</span>;
+}
+
+<span style="color: #d7ba7d;">body</span> {
+    <span style="color: #9cdcfe;">font-family</span>: <span class="string">'Arial', sans-serif</span>;
+    <span style="color: #9cdcfe;">line-height</span>: <span style="color: #b5cea8;">1.6</span>;
+    <span style="color: #9cdcfe;">color</span>: <span class="string">#333</span>;
+}
+
+<span class="comment">/* Flexbox Navigation */</span>
+<span style="color: #d7ba7d;">nav ul</span> {
+    <span style="color: #9cdcfe;">display</span>: <span class="string">flex</span>;
+    <span style="color: #9cdcfe;">list-style</span>: <span class="string">none</span>;
+    <span style="color: #9cdcfe;">justify-content</span>: <span class="string">space-around</span>;
+    <span style="color: #9cdcfe;">background</span>: <span style="color: #dcdcaa;">linear-gradient</span>(<span style="color: #b5cea8;">45deg</span>, <span class="string">#667eea</span>, <span class="string">#764ba2</span>);
+    <span style="color: #9cdcfe;">padding</span>: <span style="color: #b5cea8;">1rem</span>;
+}
+
+<span style="color: #d7ba7d;">nav a</span> {
+    <span style="color: #9cdcfe;">color</span>: <span class="string">white</span>;
+    <span style="color: #9cdcfe;">text-decoration</span>: <span class="string">none</span>;
+    <span style="color: #9cdcfe;">padding</span>: <span style="color: #b5cea8;">0.5rem</span> <span style="color: #b5cea8;">1rem</span>;
+    <span style="color: #9cdcfe;">border-radius</span>: <span style="color: #b5cea8;">4px</span>;
+    <span style="color: #9cdcfe;">transition</span>: <span style="color: #9cdcfe;">background-color</span> <span style="color: #b5cea8;">0.3s</span> <span class="string">ease</span>;
+}
+
+<span style="color: #d7ba7d;">nav a:hover</span> {
+    <span style="color: #9cdcfe;">background-color</span>: <span style="color: #dcdcaa;">rgba</span>(<span style="color: #b5cea8;">255</span>, <span style="color: #b5cea8;">255</span>, <span style="color: #b5cea8;">255</span>, <span style="color: #b5cea8;">0.2</span>);
+}
+
+<span class="comment">/* CSS Grid Layout */</span>
+<span style="color: #d7ba7d;">.container</span> {
+    <span style="color: #9cdcfe;">display</span>: <span class="string">grid</span>;
+    <span style="color: #9cdcfe;">grid-template-columns</span>: <span style="color: #dcdcaa;">repeat</span>(<span style="color: #dcdcaa;">auto-fit</span>, <span style="color: #dcdcaa;">minmax</span>(<span style="color: #b5cea8;">300px</span>, <span style="color: #b5cea8;">1fr</span>));
+    <span style="color: #9cdcfe;">gap</span>: <span style="color: #b5cea8;">2rem</span>;
+    <span style="color: #9cdcfe;">padding</span>: <span style="color: #b5cea8;">2rem</span>;
+}
+
+<span class="comment">/* Responsive Design */</span>
+<span style="color: #569cd6;">@media</span> (<span style="color: #9cdcfe;">max-width</span>: <span style="color: #b5cea8;">768px</span>) {
+    <span style="color: #d7ba7d;">nav ul</span> {
+        <span style="color: #9cdcfe;">flex-direction</span>: <span class="string">column</span>;
+    }
+    
+    <span style="color: #d7ba7d;">.container</span> {
+        <span style="color: #9cdcfe;">grid-template-columns</span>: <span style="color: #b5cea8;">1fr</span>;
+        <span style="color: #9cdcfe;">padding</span>: <span style="color: #b5cea8;">1rem</span>;
+    }
+}
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>JavaScript: Adding Interactivity</h4>
+                    <p>JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It's a language that is also characterized as dynamic, weakly typed, prototype-based, and multi-paradigm. JavaScript enables interactive web pages and is an essential part of web applications.</p>
+                    
+                    <p>Modern JavaScript (ES6+) includes many powerful features like arrow functions, destructuring, modules, async/await, and more. These features make JavaScript more expressive and easier to work with, enabling developers to write cleaner, more maintainable code.</p>
+                    
+                    <div class="code-example">
+<span class="comment">// Modern JavaScript (ES6+) Features</span>
+
+<span class="comment">// Arrow Functions and Template Literals</span>
+<span class="keyword">const</span> <span style="color: #dcdcaa;">greetUser</span> = (<span style="color: #9cdcfe;">name</span>, <span style="color: #9cdcfe;">age</span>) => {
+    <span class="keyword">return</span> <span style="color: #ce9178;">`Hello, ${name}! You are ${age} years old.`</span>;
+};
+
+<span class="comment">// Destructuring and Spread Operator</span>
+<span class="keyword">const</span> <span style="color: #9cdcfe;">user</span> = { <span style="color: #9cdcfe;">name</span>: <span class="string">'Alice'</span>, <span style="color: #9cdcfe;">age</span>: <span style="color: #b5cea8;">25</span>, <span style="color: #9cdcfe;">city</span>: <span class="string">'New York'</span> };
+<span class="keyword">const</span> { <span style="color: #9cdcfe;">name</span>, <span style="color: #9cdcfe;">age</span> } = <span style="color: #9cdcfe;">user</span>;
+<span class="keyword">const</span> <span style="color: #9cdcfe;">updatedUser</span> = { ...<span style="color: #9cdcfe;">user</span>, <span style="color: #9cdcfe;">age</span>: <span style="color: #b5cea8;">26</span> };
+
+<span class="comment">// DOM Manipulation</span>
+<span class="keyword">const</span> <span style="color: #dcdcaa;">updateContent</span> = () => {
+    <span class="keyword">const</span> <span style="color: #9cdcfe;">element</span> = <span style="color: #9cdcfe;">document</span>.<span style="color: #dcdcaa;">querySelector</span>(<span class="string">'#content'</span>);
+    <span style="color: #9cdcfe;">element</span>.<span style="color: #9cdcfe;">innerHTML</span> = <span style="color: #dcdcaa;">greetUser</span>(<span style="color: #9cdcfe;">name</span>, <span style="color: #9cdcfe;">age</span>);
+    <span style="color: #9cdcfe;">element</span>.<span style="color: #9cdcfe;">classList</span>.<span style="color: #dcdcaa;">add</span>(<span class="string">'updated'</span>);
+};
+
+<span class="comment">// Event Listeners</span>
+<span style="color: #9cdcfe;">document</span>.<span style="color: #dcdcaa;">addEventListener</span>(<span class="string">'DOMContentLoaded'</span>, () => {
+    <span class="keyword">const</span> <span style="color: #9cdcfe;">button</span> = <span style="color: #9cdcfe;">document</span>.<span style="color: #dcdcaa;">getElementById</span>(<span class="string">'updateBtn'</span>);
+    <span style="color: #9cdcfe;">button</span>.<span style="color: #dcdcaa;">addEventListener</span>(<span class="string">'click'</span>, <span style="color: #dcdcaa;">updateContent</span>);
+});
+
+<span class="comment">// Async/Await for API calls</span>
+<span class="keyword">const</span> <span style="color: #dcdcaa;">fetchUserData</span> = <span class="keyword">async</span> (<span style="color: #9cdcfe;">userId</span>) => {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> <span style="color: #9cdcfe;">response</span> = <span class="keyword">await</span> <span style="color: #dcdcaa;">fetch</span>(<span style="color: #ce9178;">`/api/users/${userId}`</span>);
+        <span class="keyword">const</span> <span style="color: #9cdcfe;">userData</span> = <span class="keyword">await</span> <span style="color: #9cdcfe;">response</span>.<span style="color: #dcdcaa;">json</span>();
+        <span class="keyword">return</span> <span style="color: #9cdcfe;">userData</span>;
+    } <span class="keyword">catch</span> (<span style="color: #9cdcfe;">error</span>) {
+        <span style="color: #9cdcfe;">console</span>.<span style="color: #dcdcaa;">error</span>(<span class="string">'Error fetching user data:'</span>, <span style="color: #9cdcfe;">error</span>);
+        <span class="keyword">throw</span> <span style="color: #9cdcfe;">error</span>;
+    }
+};
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Modern Web Development Workflow</h4>
+                    <p>Modern web development involves using various tools and technologies to streamline the development process, improve code quality, and enhance performance. Understanding these tools is essential for professional web development.</p>
+                    
+                    <p><strong>Essential Development Tools:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Version Control:</strong> Git for tracking changes and collaboration</li>
+                        <li><strong>Package Managers:</strong> npm, yarn for managing dependencies</li>
+                        <li><strong>Build Tools:</strong> Webpack, Vite, Parcel for bundling and optimization</li>
+                        <li><strong>CSS Preprocessors:</strong> Sass, Less for enhanced CSS capabilities</li>
+                        <li><strong>Frameworks:</strong> React, Vue, Angular for complex applications</li>
+                        <li><strong>Testing:</strong> Jest, Cypress for ensuring code quality</li>
+                    </ul>
+                    
+                    <p><strong>Development Best Practices:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li>Write semantic, accessible HTML</li>
+                        <li>Use CSS methodologies like BEM or CSS-in-JS</li>
+                        <li>Follow JavaScript best practices and use linters</li>
+                        <li>Implement responsive design principles</li>
+                        <li>Optimize for performance and SEO</li>
+                        <li>Test across different browsers and devices</li>
+                    </ul>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Best Practices and Performance</h4>
+                    <p>Creating high-quality web applications requires attention to performance, accessibility, and user experience. Modern web development emphasizes these aspects to ensure applications work well for all users across different devices and network conditions.</p>
+                    
+                    <p><strong>Performance Optimization:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Minimize HTTP Requests:</strong> Combine files, use CSS sprites</li>
+                        <li><strong>Optimize Images:</strong> Use appropriate formats, compress images</li>
+                        <li><strong>Minify Code:</strong> Remove unnecessary characters from CSS/JS</li>
+                        <li><strong>Use CDNs:</strong> Serve static assets from content delivery networks</li>
+                        <li><strong>Lazy Loading:</strong> Load content as needed to improve initial load times</li>
+                    </ul>
+                    
+                    <p><strong>Accessibility (a11y):</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li>Use semantic HTML elements appropriately</li>
+                        <li>Provide alternative text for images</li>
+                        <li>Ensure sufficient color contrast</li>
+                        <li>Make sites keyboard navigable</li>
+                        <li>Use ARIA attributes when necessary</li>
+                    </ul>
+                    
+                    <p><strong>Security Considerations:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li>Validate and sanitize user input</li>
+                        <li>Use HTTPS for all communications</li>
+                        <li>Implement Content Security Policy (CSP)</li>
+                        <li>Keep dependencies updated</li>
+                        <li>Follow OWASP security guidelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="react-modal" class="game-modal">
+        <div class="game-content" style="max-width: 900px;">
+            <button class="close-button" onclick="closeLearningModule()">&times;</button>
+            <h3>⚛️ React & Modern Frontend Development</h3>
+            <div class="learning-content">
+                <div class="learning-section">
+                    <h4>Introduction to React</h4>
+                    <p>React is a JavaScript library for building user interfaces, particularly web applications. Developed by Facebook (now Meta) and released in 2013, React has become one of the most popular frontend frameworks in the world. It's designed to make building interactive UIs painless by creating encapsulated components that manage their own state.</p>
+                    
+                    <p>React's core philosophy revolves around the concept of components - reusable pieces of UI that can be composed together to build complex applications. This component-based architecture promotes code reusability, maintainability, and makes it easier to reason about your application's structure.</p>
+                </div>
+
+                <div class="learning-section">
+                    <h4>React Components and JSX</h4>
+                    <p>Components are the building blocks of React applications. They can be written as functions (functional components) or classes (class components), though functional components with hooks are now the preferred approach. JSX allows you to write HTML-like syntax directly in your JavaScript code.</p>
+                    
+                    <div class="code-example">
+<span class="comment">// Functional Component with JSX</span>
+<span class="keyword">import</span> <span style="color: #4ec9b0;">React</span> <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span style="color: #dcdcaa;">Welcome</span>(<span style="color: #9cdcfe;">props</span>) {
+    <span class="keyword">return</span> (
+        <span style="color: #569cd6;">&lt;div</span> <span style="color: #9cdcfe;">className</span>=<span class="string">"welcome-container"</span><span style="color: #569cd6;">&gt;</span>
+            <span style="color: #569cd6;">&lt;h1&gt;</span>Hello, {<span style="color: #9cdcfe;">props</span>.<span style="color: #9cdcfe;">name</span>}!<span style="color: #569cd6;">&lt;/h1&gt;</span>
+            <span style="color: #569cd6;">&lt;p&gt;</span>Welcome to our React application.<span style="color: #569cd6;">&lt;/p&gt;</span>
+        <span style="color: #569cd6;">&lt;/div&gt;</span>
+    );
+}
+
+<span class="comment">// Using the component</span>
+<span class="keyword">function</span> <span style="color: #dcdcaa;">App</span>() {
+    <span class="keyword">return</span> <span style="color: #569cd6;">&lt;Welcome</span> <span style="color: #9cdcfe;">name</span>=<span class="string">"Alice"</span> <span style="color: #569cd6;">/&gt;</span>;
+}
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>State Management with Hooks</h4>
+                    <p>React Hooks, introduced in React 16.8, allow you to use state and other React features in functional components. The useState hook is the most commonly used hook for managing component state. Hooks follow specific rules and provide a more functional approach to React development.</p>
+                    
+                    <div class="code-example">
+<span class="keyword">import</span> <span style="color: #4ec9b0;">React</span>, { <span style="color: #9cdcfe;">useState</span>, <span style="color: #9cdcfe;">useEffect</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span style="color: #dcdcaa;">Counter</span>() {
+    <span class="comment">// useState hook for managing state</span>
+    <span class="keyword">const</span> [<span style="color: #9cdcfe;">count</span>, <span style="color: #9cdcfe;">setCount</span>] = <span style="color: #dcdcaa;">useState</span>(<span style="color: #b5cea8;">0</span>);
+    <span class="keyword">const</span> [<span style="color: #9cdcfe;">message</span>, <span style="color: #9cdcfe;">setMessage</span>] = <span style="color: #dcdcaa;">useState</span>(<span class="string">''</span>);
+
+    <span class="comment">// useEffect hook for side effects</span>
+    <span style="color: #dcdcaa;">useEffect</span>(() => {
+        <span class="keyword">if</span> (<span style="color: #9cdcfe;">count</span> > <span style="color: #b5cea8;">10</span>) {
+            <span style="color: #dcdcaa;">setMessage</span>(<span class="string">'Wow, you clicked a lot!'</span>);
+        } <span class="keyword">else</span> <span class="keyword">if</span> (<span style="color: #9cdcfe;">count</span> > <span style="color: #b5cea8;">5</span>) {
+            <span style="color: #dcdcaa;">setMessage</span>(<span class="string">'Keep clicking!'</span>);
+        } <span class="keyword">else</span> {
+            <span style="color: #dcdcaa;">setMessage</span>(<span class="string">'Click the button to increment'</span>);
         }
-    </style>
+    }, [<span style="color: #9cdcfe;">count</span>]); <span class="comment">// Dependency array</span>
+
+    <span class="keyword">const</span> <span style="color: #dcdcaa;">increment</span> = () => {
+        <span style="color: #dcdcaa;">setCount</span>(<span style="color: #9cdcfe;">prevCount</span> => <span style="color: #9cdcfe;">prevCount</span> + <span style="color: #b5cea8;">1</span>);
+    };
+
+    <span class="keyword">return</span> (
+        <span style="color: #569cd6;">&lt;div</span> <span style="color: #9cdcfe;">className</span>=<span class="string">"counter"</span><span style="color: #569cd6;">&gt;</span>
+            <span style="color: #569cd6;">&lt;h2&gt;</span>Counter: {<span style="color: #9cdcfe;">count</span>}<span style="color: #569cd6;">&lt;/h2&gt;</span>
+            <span style="color: #569cd6;">&lt;p&gt;</span>{<span style="color: #9cdcfe;">message</span>}<span style="color: #569cd6;">&lt;/p&gt;</span>
+            <span style="color: #569cd6;">&lt;button</span> <span style="color: #9cdcfe;">onClick</span>={<span style="color: #dcdcaa;">increment</span>}<span style="color: #569cd6;">&gt;</span>Increment<span style="color: #569cd6;">&lt;/button&gt;</span>
+        <span style="color: #569cd6;">&lt;/div&gt;</span>
+    );
+}
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Advanced React Patterns</h4>
+                    <p>As React applications grow in complexity, several patterns and advanced concepts become essential. Custom hooks allow you to extract component logic into reusable functions. Context provides a way to pass data through the component tree without having to pass props down manually at every level.</p>
+                    
+                    <div class="code-example">
+<span class="comment">// Custom Hook for API data fetching</span>
+<span class="keyword">import</span> { <span style="color: #9cdcfe;">useState</span>, <span style="color: #9cdcfe;">useEffect</span> } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span style="color: #dcdcaa;">useApi</span>(<span style="color: #9cdcfe;">url</span>) {
+    <span class="keyword">const</span> [<span style="color: #9cdcfe;">data</span>, <span style="color: #9cdcfe;">setData</span>] = <span style="color: #dcdcaa;">useState</span>(<span style="color: #569cd6;">null</span>);
+    <span class="keyword">const</span> [<span style="color: #9cdcfe;">loading</span>, <span style="color: #9cdcfe;">setLoading</span>] = <span style="color: #dcdcaa;">useState</span>(<span style="color: #569cd6;">true</span>);
+    <span class="keyword">const</span> [<span style="color: #9cdcfe;">error</span>, <span style="color: #9cdcfe;">setError</span>] = <span style="color: #dcdcaa;">useState</span>(<span style="color: #569cd6;">null</span>);
+
+    <span style="color: #dcdcaa;">useEffect</span>(() => {
+        <span class="keyword">const</span> <span style="color: #dcdcaa;">fetchData</span> = <span class="keyword">async</span> () => {
+            <span class="keyword">try</span> {
+                <span style="color: #dcdcaa;">setLoading</span>(<span style="color: #569cd6;">true</span>);
+                <span class="keyword">const</span> <span style="color: #9cdcfe;">response</span> = <span class="keyword">await</span> <span style="color: #dcdcaa;">fetch</span>(<span style="color: #9cdcfe;">url</span>);
+                <span class="keyword">const</span> <span style="color: #9cdcfe;">result</span> = <span class="keyword">await</span> <span style="color: #9cdcfe;">response</span>.<span style="color: #dcdcaa;">json</span>();
+                <span style="color: #dcdcaa;">setData</span>(<span style="color: #9cdcfe;">result</span>);
+            } <span class="keyword">catch</span> (<span style="color: #9cdcfe;">err</span>) {
+                <span style="color: #dcdcaa;">setError</span>(<span style="color: #9cdcfe;">err</span>.<span style="color: #9cdcfe;">message</span>);
+            } <span class="keyword">finally</span> {
+                <span style="color: #dcdcaa;">setLoading</span>(<span style="color: #569cd6;">false</span>);
+            }
+        };
+
+        <span style="color: #dcdcaa;">fetchData</span>();
+    }, [<span style="color: #9cdcfe;">url</span>]);
+
+    <span class="keyword">return</span> { <span style="color: #9cdcfe;">data</span>, <span style="color: #9cdcfe;">loading</span>, <span style="color: #9cdcfe;">error</span> };
+}
+
+<span class="comment">// Using the custom hook</span>
+<span class="keyword">function</span> <span style="color: #dcdcaa;">UserProfile</span>({ <span style="color: #9cdcfe;">userId</span> }) {
+    <span class="keyword">const</span> { <span style="color: #9cdcfe;">data</span>: <span style="color: #9cdcfe;">user</span>, <span style="color: #9cdcfe;">loading</span>, <span style="color: #9cdcfe;">error</span> } = <span style="color: #dcdcaa;">useApi</span>(<span style="color: #ce9178;">`/api/users/${userId}`</span>);
+
+    <span class="keyword">if</span> (<span style="color: #9cdcfe;">loading</span>) <span class="keyword">return</span> <span style="color: #569cd6;">&lt;div&gt;</span>Loading...<span style="color: #569cd6;">&lt;/div&gt;</span>;
+    <span class="keyword">if</span> (<span style="color: #9cdcfe;">error</span>) <span class="keyword">return</span> <span style="color: #569cd6;">&lt;div&gt;</span>Error: {<span style="color: #9cdcfe;">error</span>}<span style="color: #569cd6;">&lt;/div&gt;</span>;
+
+    <span class="keyword">return</span> (
+        <span style="color: #569cd6;">&lt;div&gt;</span>
+            <span style="color: #569cd6;">&lt;h2&gt;</span>{<span style="color: #9cdcfe;">user</span>.<span style="color: #9cdcfe;">name</span>}<span style="color: #569cd6;">&lt;/h2&gt;</span>
+            <span style="color: #569cd6;">&lt;p&gt;</span>{<span style="color: #9cdcfe;">user</span>.<span style="color: #9cdcfe;">email</span>}<span style="color: #569cd6;">&lt;/p&gt;</span>
+        <span style="color: #569cd6;">&lt;/div&gt;</span>
+    );
+}
+                    </div>
+                </div>
+
+                <div class="learning-section">
+                    <h4>Modern React Ecosystem</h4>
+                    <p>The React ecosystem includes many tools and libraries that enhance development productivity and application capabilities. Understanding these tools is crucial for modern React development.</p>
+                    
+                    <p><strong>Essential React Tools and Libraries:</strong></p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Create React App / Vite:</strong> Build tools for setting up React projects</li>
+                        <li><strong>React Router:</strong> Declarative routing for React applications</li>
+                        <li><strong>Redux / Zustand:</strong> State management libraries for complex applications</li>
+                        <li><strong>React Query / SWR:</strong> Data fetching and caching libraries</li>
+                        <li><strong>Styled Components / Emotion:</strong> CSS-in-JS libraries for styling</li>
+                        <li><strong>React Testing Library:</strong> Testing utilities for React components</li>
+                        <li><strong>Next.js:</strong> Full-stack React framework with SSR and SSG</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Navigation
@@ -633,22 +1677,132 @@
             document.querySelectorAll('.game-modal').forEach(modal => {
                 modal.classList.remove('active');
             });
+            // Reset snake game when closing
+            if (snakeGame) {
+                clearInterval(snakeGame);
+                snakeGame = null;
+            }
         }
 
-        // Snake Game
+        // MovieWeb Functions
+        function openMovieWeb() {
+            document.getElementById('movieweb-modal').classList.add('active');
+        }
+
+        function closeMovieWeb() {
+            document.getElementById('movieweb-modal').classList.remove('active');
+        }
+
+        // Learning Module Functions
+        function openLearningModule(moduleType) {
+            document.getElementById(moduleType + '-modal').classList.add('active');
+        }
+
+        function closeLearningModule() {
+            document.querySelectorAll('.game-modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+
+        // Snake Game - Fixed Version
+        let snakeGame = null;
+        let snakeCanvas = null;
+        let snakeCtx = null;
+        
         function startSnake() {
-            let score = 0;
-            const scoreElement = document.getElementById('snake-score');
+            if (snakeGame) return; // Prevent multiple games
             
-            const gameInterval = setInterval(() => {
-                score += 10;
-                scoreElement.textContent = score;
+            const gameArea = document.querySelector('#snake-modal .game-area');
+            gameArea.innerHTML = `
+                <div style="text-align: center;">
+                    <p>🎮 Use arrow keys to move | Score: <span id="snake-score">0</span></p>
+                    <canvas id="snake-canvas" width="300" height="300" style="border: 2px solid #00ff88; background: #1a1a2e; border-radius: 8px;"></canvas>
+                    <br><button onclick="resetSnake()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #ff4444; border: none; border-radius: 5px; color: white; cursor: pointer;">Reset Game</button>
+                </div>
+            `;
+            
+            snakeCanvas = document.getElementById('snake-canvas');
+            snakeCtx = snakeCanvas.getContext('2d');
+            
+            let snake = [{x: 150, y: 150}];
+            let food = {x: 100, y: 100};
+            let dx = 0, dy = 0;
+            let score = 0;
+            
+            function drawSnake() {
+                snakeCtx.fillStyle = '#00ff88';
+                snake.forEach(segment => {
+                    snakeCtx.fillRect(segment.x, segment.y, 10, 10);
+                });
+            }
+            
+            function drawFood() {
+                snakeCtx.fillStyle = '#ff00ff';
+                snakeCtx.fillRect(food.x, food.y, 10, 10);
+            }
+            
+            function moveSnake() {
+                const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+                snake.unshift(head);
                 
-                if (score >= 100) {
-                    clearInterval(gameInterval);
-                    alert('🎉 Congratulations! You scored ' + score + ' points!');
+                if (head.x === food.x && head.y === food.y) {
+                    score += 10;
+                    document.getElementById('snake-score').textContent = score;
+                    food = {
+                        x: Math.floor(Math.random() * 30) * 10,
+                        y: Math.floor(Math.random() * 30) * 10
+                    };
+                } else {
+                    snake.pop();
                 }
-            }, 1000);
+            }
+            
+            function gameLoop() {
+                snakeCtx.clearRect(0, 0, 300, 300);
+                moveSnake();
+                drawSnake();
+                drawFood();
+                
+                // Check collisions
+                const head = snake[0];
+                if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 300) {
+                    alert('Game Over! Score: ' + score);
+                    resetSnake();
+                    return;
+                }
+            }
+            
+            // Controls
+            function handleKeyPress(e) {
+                if (!snakeGame) return;
+                switch(e.key) {
+                    case 'ArrowUp': if (dy === 0) { dx = 0; dy = -10; } break;
+                    case 'ArrowDown': if (dy === 0) { dx = 0; dy = 10; } break;
+                    case 'ArrowLeft': if (dx === 0) { dx = -10; dy = 0; } break;
+                    case 'ArrowRight': if (dx === 0) { dx = 10; dy = 0; } break;
+                }
+            }
+            
+            document.addEventListener('keydown', handleKeyPress);
+            
+            snakeGame = setInterval(gameLoop, 200);
+            drawSnake();
+            drawFood();
+        }
+        
+        function resetSnake() {
+            if (snakeGame) {
+                clearInterval(snakeGame);
+                snakeGame = null;
+            }
+            const gameArea = document.querySelector('#snake-modal .game-area');
+            gameArea.innerHTML = `
+                <div style="text-align: center;">
+                    <p>🎮 Use arrow keys to move</p>
+                    <p>Score: <span id="snake-score">0</span></p>
+                    <button onclick="startSnake()" style="padding: 0.5rem 1rem; background: #00ff88; border: none; border-radius: 5px; color: white; cursor: pointer;">Start Game</button>
+                </div>
+            `;
         }
 
         // Memory Game
@@ -713,14 +1867,240 @@
             }
         }
 
+        // Code Editor Mode Management
+        let currentMode = 'javascript';
+        
+        function switchToJS() {
+            currentMode = 'javascript';
+            document.getElementById('js-tab').style.background = '#00ff88';
+            document.getElementById('bookmarklet-tab').style.background = '#333';
+            document.getElementById('bookmarklet-examples').style.display = 'none';
+            document.getElementById('code-input').value = `// Welcome to Luminite Code Playground
+function welcomeToLuminite() {
+  const message = "Start your coding journey!";
+  console.log(message);
+  return "Happy coding! 🚀";
+}
+
+// Try running the function!
+welcomeToLuminite();`;
+        }
+        
+        function switchToBookmarklet() {
+            currentMode = 'bookmarklet';
+            document.getElementById('js-tab').style.background = '#333';
+            document.getElementById('bookmarklet-tab').style.background = '#00ff88';
+            document.getElementById('bookmarklet-examples').style.display = 'block';
+            document.getElementById('code-input').value = `// Bookmarklet Example - Rainbow Background
+javascript:(function(){
+    document.body.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd)';
+    document.body.style.backgroundSize = '400% 400%';
+    document.body.style.animation = 'rainbow 3s ease infinite';
+    document.head.insertAdjacentHTML('beforeend', '<style>@keyframes rainbow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}</style>');
+    alert('🌈 Rainbow background activated!');
+})();
+
+// Click the example buttons below to try different bookmarklets!
+// Or paste your own bookmarklet code here and click "Run Code"`;
+        }
+        
+        function loadExample(type) {
+            const examples = {
+                rainbow: `javascript:(function(){
+    document.body.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd)';
+    document.body.style.backgroundSize = '400% 400%';
+    document.body.style.animation = 'rainbow 3s ease infinite';
+    document.head.insertAdjacentHTML('beforeend', '<style>@keyframes rainbow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}</style>');
+    alert('🌈 Rainbow background activated!');
+})();`,
+                
+                highlight: `javascript:(function(){
+    document.querySelectorAll('a').forEach(link => {
+        link.style.background = 'yellow';
+        link.style.padding = '2px 4px';
+        link.style.borderRadius = '3px';
+        link.style.border = '2px solid orange';
+        link.style.transition = 'all 0.3s ease';
+    });
+    alert('🔗 All links highlighted!');
+})();`,
+                
+                dance: `javascript:(function(){
+    document.body.style.animation = 'dance 0.5s infinite';
+    document.head.insertAdjacentHTML('beforeend', '<style>@keyframes dance{0%,100%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-2deg) scale(1.02)}50%{transform:rotate(0deg) scale(0.98)}75%{transform:rotate(2deg) scale(1.02)}}</style>');
+    setTimeout(() => {
+        document.body.style.animation = '';
+        alert('💃 Dance party over!');
+    }, 5000);
+    alert('💃 Let the page dance for 5 seconds!');
+})();`,
+                
+                dark: `javascript:(function(){
+    const darkMode = document.getElementById('dark-mode-bookmarklet');
+    if (darkMode) {
+        darkMode.remove();
+        alert('🌞 Dark mode disabled!');
+    } else {
+        const style = document.createElement('style');
+        style.id = 'dark-mode-bookmarklet';
+        style.innerHTML = '*{background-color:#1a1a1a!important;color:#e0e0e0!important;border-color:#444!important}a{color:#66b3ff!important}img{opacity:0.8!important}';
+        document.head.appendChild(style);
+        alert('🌙 Dark mode activated!');
+    }
+})();`,
+                
+                edpuzzle: `javascript:fetch("https://cdn.jsdelivr.net/gh/ading2210/edpuzzle-answers@latest/script.js")
+  .then((res) => res.text())
+  .then(eval);`,
+                
+                minecraft: `javascript:(function(){window.mcbmRootURI='https://luphoria.com/MCanywhere/';window.mcbmScriptURI='mcbm.min.js';window.mcbmLang='eng';var s,ss=window.mcbmRootURI+'js/mcbm-load.min.js';s=document.createElement('script');s.src=ss;document.body.appendChild(s);})();`,
+                
+                proxy: `javascript:let a = prompt('What website?'); b = a.replace('https://', ''); c = b.replace('.', '-'); d = c.split('/'); for (let e = 0; e < d.length; e++) { if (d.length === 1) { var tab = 'https://' + d[0] + '.translate.goog/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp'; if (d.length === 2) { var tab = 'https://' + d[0] + '.translate.goog/' + d[1] + '?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp'; } } else { if (d.length === 3) { var tab = 'https://' + d[0] + '.translate.goog/' + d[1] + '/' + d[2] + '?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp'; } else { if (d.length === 4) { var tab = 'https://' + d[0] + '.translate.goog/' + d[1] + '/' + d[2] + '/' + d[3] + '?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp'; } } } } try { let newTab = open(tab); newTab.alert('made by virescent overlord'); } catch (error) { alert(error + '\\n try a different website. If nothing is working then cry abt it bozo') }`
+            };
+            
+            document.getElementById('code-input').value = examples[type];
+        }
+
+        // Code Playground Console - CSP Safe Version with Bookmarklet Support
+        function runCode() {
+            const code = document.getElementById('code-input').value;
+            const output = document.getElementById('console-output');
+            
+            // Clear previous output and add separator
+            const timestamp = new Date().toLocaleTimeString();
+            output.textContent += `\n--- Running code at ${timestamp} ---\n`;
+            
+            if (currentMode === 'bookmarklet') {
+                runBookmarklet(code, output);
+            } else {
+                runJavaScript(code, output);
+            }
+            
+            // Auto-scroll to bottom
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function runBookmarklet(code, output) {
+            try {
+                // Extract the javascript: part if present
+                let jsCode = code.trim();
+                if (jsCode.startsWith('javascript:')) {
+                    jsCode = jsCode.substring(11);
+                }
+                
+                // Remove any wrapping parentheses and function wrapper
+                jsCode = jsCode.replace(/^\(function\(\)\{/, '').replace(/\}\)\(\);?$/, '');
+                
+                output.textContent += '🔖 Running bookmarklet...\n';
+                
+                // CSP-safe bookmarklet execution using script element
+                const script = document.createElement('script');
+                script.textContent = `
+                    try {
+                        ${jsCode}
+                        console.log('✅ Bookmarklet executed successfully!');
+                    } catch (error) {
+                        console.error('❌ Bookmarklet Error:', error.message);
+                    }
+                `;
+                
+                // Capture any console output
+                const originalLog = console.log;
+                const originalError = console.error;
+                
+                console.log = function(...args) {
+                    output.textContent += args.join(' ') + '\n';
+                    originalLog.apply(console, arguments);
+                };
+                
+                console.error = function(...args) {
+                    output.textContent += args.join(' ') + '\n';
+                    originalError.apply(console, arguments);
+                };
+                
+                // Execute the script
+                document.head.appendChild(script);
+                
+                // Clean up
+                setTimeout(() => {
+                    document.head.removeChild(script);
+                    console.log = originalLog;
+                    console.error = originalError;
+                }, 100);
+                
+            } catch (error) {
+                output.textContent += `❌ Bookmarklet Error: ${error.message}\n`;
+                output.textContent += '💡 Tip: Make sure your bookmarklet code is properly formatted\n';
+            }
+        }
+        
+        function runJavaScript(code, output) {
+            // Capture console.log output
+            const originalLog = console.log;
+            const logs = [];
+            
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, arguments);
+            };
+            
+            try {
+                // Create a safer execution environment using Function constructor
+                const func = new Function(`
+                    "use strict";
+                    ${code}
+                `);
+                
+                // Execute the code
+                const result = func();
+                
+                // Display console.log outputs
+                if (logs.length > 0) {
+                    logs.forEach(log => {
+                        output.textContent += log + '\n';
+                    });
+                }
+                
+                // Display return value if it exists and isn't undefined
+                if (result !== undefined) {
+                    output.textContent += `→ ${typeof result === 'object' ? JSON.stringify(result, null, 2) : result}\n`;
+                }
+                
+            } catch (error) {
+                output.textContent += `❌ Error: ${error.message}\n`;
+            } finally {
+                // Restore original console.log
+                console.log = originalLog;
+            }
+        }
+        
+        function clearConsole() {
+            const output = document.getElementById('console-output');
+            output.textContent = `Welcome to Luminite Console! 🚀
+Type some JavaScript code and click "Run Code" to see the output.
+
+`;
+        }
+        
+        // Allow Ctrl+Enter to run code
+        document.getElementById('code-input').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                runCode();
+            }
+        });
+
         // Close modals when clicking outside
         document.querySelectorAll('.game-modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeGame();
+                    closeLearningModule();
+                    closeMovieWeb();
                 }
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9880383635e92ef2',t:'MTc1OTM2NjM3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98812fddc1337cb2',t:'MTc1OTM3NjUxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
